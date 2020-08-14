@@ -3,13 +3,12 @@
 Deploy Controller:
 
 ```
-platform_namespace=domino-platform compute_namespace=domino-compute ./deploy.sh $UNIQUE_CONTROLLER_NAME $HARDWARE_TIERS $MEMORY_LIMIT
+platform_namespace=domino-platform compute_namespace=domino-compute ./deploy.sh $UNIQUE_CONTROLLER_NAME $TLS_SECRET $HOSTNAME $REPLICAS
 ```
 
-`HARDWARE_TIERS` can be a comma separated list.
-`MEMORY_LIMIT` limits the size that the ramdisk can grow to. Note that the pod will simply be evicted, causing a poor user experience.  example: `8Gi`
-
-If you are not using the default platform and compute namespaces, specify them as above, shown there are the defaults.
+`TLS_SECRET` should be the kubernetes secret that contains the tls cert, in the format namespace/secret name
+`HOSTNAME` The domino frontend host, linked to the tls cert 
+`REPLICAS` Number of webhook controller pods. Optional: Defaults to 1
 
 Remove Controller:
 
